@@ -32,13 +32,17 @@ docker run -d -e EP_HOST=example.com -e EP_PORT=2003 -e FRITZ_IP=192.168.178.1 -
 docker-compose up
 ```
 - collectd will now be available on your host in the exposed port `25826`.
-- Create the database in Influxdb
 
 If you want to run the container permamently, you'll need to use the `-d` option:
 
 ```
 docker-compose -f docker-compose.yml up -d
 ```
+
+#### Config influxdb 
+Add the settings from `influxdb.conf` to your local config.
+
+- Create the database `collectd` in your Influxdb
 
 #### Mapping of collectd values to influxdb using types.db
 You've might wonder about the `types.db`. It is taken from the collectd installation and must be present for influxdb, so that influx knows how it should map the values from collectd.
