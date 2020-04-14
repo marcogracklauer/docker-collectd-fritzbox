@@ -28,20 +28,7 @@ docker run -d -e EP_HOST=example.com -e EP_PORT=2003 -e FRITZ_IP=192.168.178.1 -
 docker-compose up
 ```
 - collectd will now be available on your host in the exposed port `25826`.
-
-### Usage with influxdb
-I intend to use this container with influxdb so you should use the content from `docker-compose.yml` to setup several container which can be started with a single docker-compose up command.
-
-- Modify the environment variables in `docker-compose.influx.yml` according to your setup
-- Rename or copy `collectd.env.template` to `collectd.env` and fill it according to your setup
-```
-docker-compose -f docker-compose.influx.yml up
-```
-
-I do not expose the port `25825`on the collectd container since influxdb will connect to the collectd container on that port inside the docker network.  I'm not using collectd directly from my docker host, as I'm using influxdb to collect the data from collectd.
-
-#### Running on Synology NAS
-Please be aware that I'm using this file on a Synology DS218+, so I've mapped some folders to the volume1 of my NAS and placed files from this repo inside (e.g. the `collectd.env`, `docker-compose.influx.yml`, `ìnfluxdb.conf`, `types.db`).
+- Create the database in Influxdb
 
 If you want to run the container permamently, you'll need to use the `-d` option:
 
@@ -51,6 +38,7 @@ docker-compose -f docker-compose.influx.yml up -d
 
 #### Mapping of collectd values to influxdb using types.db
 You've might wonder about the `types.db`. It is taken from the collectd installation and must be present for influxdb, so that influx knows how it should map the values from collectd.
+- Copy that file to your environment running the influxdb.
 
 # Credits
 Parts of the config is taken from [collectd-docker](https://github.com/revett/collectd-docker).
