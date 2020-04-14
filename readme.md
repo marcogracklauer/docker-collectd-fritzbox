@@ -3,9 +3,13 @@ This docker container is a preconfigured collectd with installed fritzcollectd. 
 
 ## Setup
 - Install docker
-- Pull the latest image from the Docker registry:
+- Clone this repository to your machine
 ```
-docker pull rudelm/collectd-fritzbox
+git clone https://github.com/marcogracklauer/docker-collectd-fritzbox
+```
+- Build a local Docker image
+```
+docker build -t fritzbox-collectd .
 ```
 - Create a user in Fritzbox used by collectd so that the TR-069 interface can be queried:
 ```
@@ -18,7 +22,7 @@ Additionally make sure that your Fritz!Box is configured to support connection q
 ### Start the container manually:
 Be aware that this will leave your used credentials in your bash history! It might be better to use the docker-compose version.
 ```
-docker run -d -e EP_HOST=example.com -e EP_PORT=2003 -e FRITZ_IP=192.168.178.1 -e FRITZ_PASSWORD=<yourpassword> rudelm/collectd-fritzbox
+docker run -d -e EP_HOST=example.com -e EP_PORT=2003 -e FRITZ_IP=192.168.178.1 -e FRITZ_PASSWORD=<yourpassword> fritzbox-collectd
 ```
 
 ### Start the container using the `docker-compose.yml`:
@@ -33,7 +37,7 @@ docker-compose up
 If you want to run the container permamently, you'll need to use the `-d` option:
 
 ```
-docker-compose -f docker-compose.influx.yml up -d
+docker-compose -f docker-compose.yml up -d
 ```
 
 #### Mapping of collectd values to influxdb using types.db
