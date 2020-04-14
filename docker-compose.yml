@@ -2,7 +2,7 @@ version: '3'
 services:
   collectd:
     #build: .
-    image: docker-fritzbox:latest
+    image: fritzbox-collectd:latest
     env_file:
       - collectd.env
     ports:
