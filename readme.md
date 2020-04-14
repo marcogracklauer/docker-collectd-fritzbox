@@ -9,7 +9,7 @@ git clone https://github.com/marcogracklauer/docker-collectd-fritzbox
 ```
 - Build a local Docker image
 ```
-docker build -t fritzbox-collectd .
+docker build -t fritzbox-collectd:latest .
 ```
 - Create a user in Fritzbox used by collectd so that the TR-069 interface can be queried:
 ```
